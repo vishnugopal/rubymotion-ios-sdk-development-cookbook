@@ -1,34 +1,15 @@
 class Cookbook
-  attr_accessor :recipes
+  extend Collectable::ClassMethods
+  include Collectable::InstanceMethods
+
+  collection_of Recipe
 
   def initialize
     seedData
   end
 
-  def count
-    @recipes.count
-  end
-
-  def [](index)
-    @recipes[index]
-  end
-
-  def []=(index, recipe)
-    @recipes[index] = recipe if recipe.is_a? Recipe
-  end
-
-  def deleteAtIndex(index)
-    @recipes.removeObjectAtIndex(index)
-  end
-
-  def addAndReturnRecipe
-    Recipe.new.tap do |recipe|
-      @recipes << recipe 
-    end
-  end
-
-  def indexOfRecipe(recipe)
-    self.recipes.indexOfObject(recipe)
+  def recipes
+    @collection
   end
 
   def seedData
@@ -83,6 +64,6 @@ class Cookbook
     recipe.preparationTime = 33
     recipes << recipe
 
-    @recipes = recipes
+    self.collection = recipes
   end
 end

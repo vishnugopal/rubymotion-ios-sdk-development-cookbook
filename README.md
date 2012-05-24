@@ -8,6 +8,7 @@ You can learn about:
   * Work with segues using prepareForSegue:
   * Multiple segues from a table view controller depending on whether it's in edit mode or not.
   * Hook up a navigation view controller to your normal controllers
+  * Saving a collection of items using a UIDocument
 
 This pretty much replicates everything from the iOS SDK Development book by Pragmatic Programmers (until about page 415) and I'll keep updating this as I go through the book.
 

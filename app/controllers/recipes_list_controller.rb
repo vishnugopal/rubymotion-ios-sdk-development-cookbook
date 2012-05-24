@@ -20,7 +20,7 @@ class RecipesListController < UITableViewController
   end
 
   def finishedEditingRecipe(recipe, editingMode)
-    row = self.dataSource.indexOfRecipe(recipe)
+    row = self.dataSource.indexOf(recipe)
     path = NSIndexPath.indexPathForRow(row, inSection:0)
     
     case editingMode
@@ -32,7 +32,7 @@ class RecipesListController < UITableViewController
   end
 
   def canceledEditingRecipe(recipe, recipePristineCopy, editingMode)
-    row = self.dataSource.indexOfRecipe(recipe)
+    row = self.dataSource.indexOf(recipe)
     path = NSIndexPath.indexPathForRow(row, inSection:0)
 
     case editingMode
@@ -85,7 +85,7 @@ class RecipesListController < UITableViewController
       index = self.tableView.indexPathForCell(sender)
       segue.destinationViewController.setRecipe(self.dataSource[index.row])
     when "addRecipe"
-      recipe = self.dataSource.addAndReturnRecipe
+      recipe = self.dataSource.create
       editController = segue.destinationViewController.topViewController
       
       editController.recipe = recipe
