@@ -31,6 +31,19 @@ class RecipesListController < UITableViewController
     end
   end
 
+  def canceledEditingRecipe(recipe, recipePristineCopy, editingMode)
+    row = self.dataSource.indexOfRecipe(recipe)
+    path = NSIndexPath.indexPathForRow(row, inSection:0)
+
+    case editingMode
+    when :create
+      self.dataSource.deleteAtIndex(row)
+    when :update
+      self.dataSource[row] = recipePristineCopy
+      self.tableView.reloadRowsAtIndexPaths([path], withRowAnimation:UITableViewRowAnimationAutomatic)
+    end
+  end
+
   def numberOfSectionsInTableView(tableView) 
     1
   end

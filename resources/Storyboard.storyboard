@@ -164,6 +164,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Recipe" id="cme-bn-kMt">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="awj-KH-hOh"/>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="done" id="2V1-ib-ZxL"/>
                     </navigationItem>
                 </viewController>

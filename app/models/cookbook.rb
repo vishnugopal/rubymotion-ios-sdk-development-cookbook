@@ -13,6 +13,10 @@ class Cookbook
     @recipes[index]
   end
 
+  def []=(index, recipe)
+    @recipes[index] = recipe if recipe.is_a? Recipe
+  end
+
   def deleteAtIndex(index)
     @recipes.removeObjectAtIndex(index)
   end

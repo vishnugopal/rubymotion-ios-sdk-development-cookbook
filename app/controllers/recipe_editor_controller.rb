@@ -2,12 +2,16 @@ class RecipeEditorController < UIViewController
   attr_accessor :recipe, :recipeListController, :editingMode
 
   def viewDidLoad
+    @recipeCancel = self.navigationItem.leftBarButtonItem
     @recipeDone = self.navigationItem.rightBarButtonItem
     @recipeTitle = view.viewWithTag 2
     @recipeDirections = view.viewWithTag 3
     @recipePreparationTime = view.viewWithTag 4
     @recipePreparationTimeStepper = view.viewWithTag 5
     @recipeImage = view.viewWithTag 6
+
+    @recipeCancel.target = self
+    @recipeCancel.action = "cancel:"
 
     @recipeDone.target = self
     @recipeDone.action = "done:"
@@ -43,6 +47,16 @@ class RecipeEditorController < UIViewController
 
   def textFieldDidEndEditing(textField)
     self.recipe.title = textField.text
+  end
+
+  def recipe=(recipe)
+    @recipe = recipe
+    @recipePristineCopy = recipe.dup
+  end
+
+  def cancel(sender)
+    self.dismissModalViewControllerAnimated(true)
+    self.recipeListController.canceledEditingRecipe(self.recipe, @recipePristineCopy, self.editingMode)
   end
 
   def done(sender)
