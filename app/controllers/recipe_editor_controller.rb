@@ -1,5 +1,5 @@
 class RecipeEditorController < UIViewController
-  attr_accessor :recipe, :recipeListController
+  attr_accessor :recipe, :recipeListController, :editingMode
 
   def viewDidLoad
     @recipeDone = self.navigationItem.rightBarButtonItem
@@ -47,7 +47,7 @@ class RecipeEditorController < UIViewController
 
   def done(sender)
     self.dismissModalViewControllerAnimated(true)
-    self.recipeListController.finishedEditingRecipe(self.recipe)
+    self.recipeListController.finishedEditingRecipe(self.recipe, self.editingMode)
   end
 
   def changePreparationTime(sender)

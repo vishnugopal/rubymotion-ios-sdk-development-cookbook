@@ -10,16 +10,16 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOY-Zc-NkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="" id="wWv-AH-w8H" customClass="RecipesListController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wse-kV-YGH">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wse-kV-YGH">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="jrP-wo-gJf" detailTextLabel="ccC-zM-tKy" imageView="T76-lh-Ap3" style="IBUITableViewCellStyleSubtitle" id="qPL-k0-epX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="jrP-wo-gJf" detailTextLabel="ccC-zM-tKy" imageView="T76-lh-Ap3" style="IBUITableViewCellStyleSubtitle" id="qPL-k0-epX">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jrP-wo-gJf">
@@ -43,9 +43,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="aPg-Rf-tfT" kind="push" identifier="presentRecipeDetail" id="C1y-RF-huH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -54,12 +51,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recipes" id="UsD-NI-cmx">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="HeG-EK-X5U"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qj6-rp-BP0">
                             <connections>
-                                <segue destination="GIa-bp-ofR" kind="modal" identifier="addNewRecipe" id="jsD-as-niB"/>
+                                <segue destination="GIa-bp-ofR" kind="modal" identifier="addRecipe" id="jsD-as-niB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="GIa-bp-ofR" kind="modal" identifier="editRecipe" id="f22-GG-Uup"/>
+                        <segue destination="aPg-Rf-tfT" kind="push" identifier="presentRecipeDetail" id="0y0-ww-3Nv"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="593" y="11"/>
@@ -101,6 +103,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="O1Y-qK-HKW"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1226" y="11"/>
@@ -183,7 +186,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2v-oR-oRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Pgp-M8-Bog" customClass="UIImagePickerController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QjF-az-CjX">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -197,7 +200,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1X-ui-zfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YE4-UY-HVD" customClass="DirectionsEditorController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sx2-QR-PdC">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" id="Sdy-wU-M9T">
@@ -239,6 +242,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUO-IW-kxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="" id="GIa-bp-ofR" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="fsc-78-mGF"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="KTx-TF-X4W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -261,4 +265,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="f22-GG-Uup"/>
+    </inferredMetricsTieBreakers>
 </document>
