@@ -29,6 +29,8 @@ class RecipesListController < UITableViewController
     when :update
       self.tableView.reloadRowsAtIndexPaths([path], withRowAnimation:UITableViewRowAnimationAutomatic)
     end
+
+    self.dataSource.save
   end
 
   def canceledEditingRecipe(recipe, recipePristineCopy, editingMode)
@@ -42,6 +44,18 @@ class RecipesListController < UITableViewController
       self.dataSource[row] = recipePristineCopy
       self.tableView.reloadRowsAtIndexPaths([path], withRowAnimation:UITableViewRowAnimationAutomatic)
     end
+  end
+
+  def recipesChanged(recipe, editingMode)
+    row = self.dataSource.indexOf(recipe)
+    path = NSIndexPath.indexPathForRow(row, inSection:0)
+
+    case editingMode
+    when :update
+      self.tableView.reloadRowsAtIndexPaths([path], withRowAnimation:UITableViewRowAnimationAutomatic)
+    end
+
+    self.dataSource.save
   end
 
   def numberOfSectionsInTableView(tableView) 
@@ -71,12 +85,9 @@ class RecipesListController < UITableViewController
     end
   end
 
-  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
-    if tableView.editing?
-      self.performSegueWithIdentifier("editRecipe", sender:tableView.cellForRowAtIndexPath(indexPath))
-    else
-      self.performSegueWithIdentifier("presentRecipeDetail", sender:tableView.cellForRowAtIndexPath(indexPath))
-    end
+  def tableView(tableView, accessoryButtonTappedForRowWithIndexPath: indexPath)
+    cell = tableView.cellForRowAtIndexPath(indexPath)
+    self.performSegueWithIdentifier("editRecipe", sender: cell)
   end
 
   def prepareForSegue(segue, sender:sender)
@@ -89,14 +100,14 @@ class RecipesListController < UITableViewController
       editController = segue.destinationViewController.topViewController
       
       editController.recipe = recipe
-      editController.recipeListController = self
+      editController.recipeEditorControllerDelegate = self
       editController.editingMode = :create
     when "editRecipe"
       index = self.tableView.indexPathForCell(sender)
       editController = segue.destinationViewController.topViewController
 
       editController.recipe = self.dataSource[index.row]
-      editController.recipeListController = self
+      editController.recipeEditorControllerDelegate = self
       editController.editingMode = :update
     end
   end

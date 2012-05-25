@@ -15,11 +15,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="jrP-wo-gJf" detailTextLabel="ccC-zM-tKy" imageView="T76-lh-Ap3" style="IBUITableViewCellStyleSubtitle" id="qPL-k0-epX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="jrP-wo-gJf" detailTextLabel="ccC-zM-tKy" imageView="T76-lh-Ap3" style="IBUITableViewCellStyleSubtitle" id="qPL-k0-epX">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jrP-wo-gJf">
@@ -43,6 +43,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="aPg-Rf-tfT" kind="push" identifier="presentRecipeDetail" id="ms6-MB-JtK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -60,7 +63,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="GIa-bp-ofR" kind="modal" identifier="editRecipe" id="f22-GG-Uup"/>
-                        <segue destination="aPg-Rf-tfT" kind="push" identifier="presentRecipeDetail" id="0y0-ww-3Nv"/>
                     </connections>
                 </tableViewController>
             </objects>

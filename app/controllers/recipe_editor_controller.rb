@@ -1,5 +1,5 @@
 class RecipeEditorController < UIViewController
-  attr_accessor :recipe, :recipeListController, :editingMode
+  attr_accessor :recipe, :recipeEditorControllerDelegate, :editingMode
 
   def viewDidLoad
     @recipeCancel = self.navigationItem.leftBarButtonItem
@@ -47,6 +47,7 @@ class RecipeEditorController < UIViewController
 
   def textFieldDidEndEditing(textField)
     self.recipe.title = textField.text
+    self.recipeEditorControllerDelegate.recipesChanged(self.recipe, editingMode)
   end
 
   def recipe=(recipe)
@@ -56,22 +57,24 @@ class RecipeEditorController < UIViewController
 
   def cancel(sender)
     self.dismissModalViewControllerAnimated(true)
-    self.recipeListController.canceledEditingRecipe(self.recipe, @recipePristineCopy, self.editingMode)
+    self.recipeEditorControllerDelegate.canceledEditingRecipe(self.recipe, @recipePristineCopy, editingMode)
   end
 
   def done(sender)
     self.dismissModalViewControllerAnimated(true)
-    self.recipeListController.finishedEditingRecipe(self.recipe, self.editingMode)
+    self.recipeEditorControllerDelegate.finishedEditingRecipe(self.recipe, editingMode)
   end
 
   def changePreparationTime(sender)
     self.recipe.preparationTime = sender.value.to_i
     @recipePreparationTime.text = "#{sender.value.to_i} min"
+    self.recipeEditorControllerDelegate.recipesChanged(self.recipe, editingMode)
   end
 
   def imagePickerController(picker, didFinishPickingMediaWithInfo:info)
     self.recipe.image = info[UIImagePickerControllerOriginalImage]
     picker.dismissModalViewControllerAnimated(true)
+    self.recipeEditorControllerDelegate.recipesChanged(self.recipe, editingMode)
   end
 
   def imagePickerControllerDidCancel(picker)

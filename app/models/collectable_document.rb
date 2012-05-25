@@ -12,8 +12,9 @@ class CollectableDocument < UIDocument
     NSLog("Creating a new item")
     self.class.collection_class.new.tap do |item|
       collection << item 
-      self.updateChangeCount(UIDocumentChangeDone)
     end
+
+    save
   end
 
   def contentsForType(typeName, error: error)
@@ -29,5 +30,9 @@ class CollectableDocument < UIDocument
     else
       false
     end
+  end
+
+  def save
+    self.updateChangeCount(UIDocumentChangeDone)
   end
 end
