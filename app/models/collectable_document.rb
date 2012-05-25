@@ -35,4 +35,19 @@ class CollectableDocument < UIDocument
   def save
     self.updateChangeCount(UIDocumentChangeDone)
   end
+
+  def data(error = nil)
+    error = Pointer.new(object) unless error
+    data = nil
+
+    coordinator = NSFileCoordinator.alloc.initWithFilePresenter(nil)
+    coordinator.coordinateReadingItemAtURL(self.fileURL, 
+      options: NSFileCoordinatorReadingWithoutChanges, 
+      error: error,
+      byAccessor: lambda { |url|
+        data = NSData.dataWithContentsOfURL(url)
+      })
+
+    return data
+  end
 end

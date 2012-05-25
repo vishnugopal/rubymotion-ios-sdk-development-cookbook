@@ -4,19 +4,29 @@ class RecipesListController < UITableViewController
   def viewDidLoad
     @recipesEdit = self.navigationItem.leftBarButtonItem
     @recipesEdit.target = self
-    @recipesEdit.action = "editOrDone:"
+    @recipesEdit.action = "sendEmail:"
   end
 
-  def editOrDone(sender)
-    if self.tableView.editing? #button clicked when editing, so let's show edit and stop editing
-      sender.title = "Edit"
-      sender.style = UIBarButtonItemStyleBordered
-      self.tableView.setEditing(false, animated: true)
+  def sendEmail(sender)
+    mailViewController = MFMailComposeViewController.alloc.init
+    mailViewController.delegate = self
+    mailViewController.subject = "Great Recipes"
+
+    error = Pointer.new(:object)
+    mailViewController.addAttachmentData(self.dataSource.data(error), 
+      mimeType: "application/octet-stream",
+      fileName: "Recipes.recipes")
+
+    unless error[0]
+      mailViewController.mailComposeDelegate = self
+      self.presentModalViewController(mailViewController, animated: true)
     else
-      sender.title = "Done" #button clicked when not editing, so let's edit & show done
-      sender.style = UIBarButtonItemStyleDone
-      self.tableView.setEditing(true, animated: true)
+      NSLog("Error in coordinating read: %@", error[0])
     end
+  end
+
+  def mailComposeController(controller, didFinishWithResult:result, error: error)
+    controller.dismissModalViewControllerAnimated(true)
   end
 
   def finishedEditingRecipe(recipe, editingMode)

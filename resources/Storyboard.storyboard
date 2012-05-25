@@ -54,7 +54,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recipes" id="UsD-NI-cmx">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="HeG-EK-X5U"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="HeG-EK-X5U"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qj6-rp-BP0">
                             <connections>
                                 <segue destination="GIa-bp-ofR" kind="modal" identifier="addRecipe" id="jsD-as-niB"/>

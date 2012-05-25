@@ -9,6 +9,7 @@ You can learn about:
   * Multiple segues from a table view controller depending on whether it's in edit mode or not.
   * Hook up a navigation view controller to your normal controllers
   * Saving a collection of items using a UIDocument
+  * Registering a custom document type (UTI) & sharing it via email
 
-This pretty much replicates everything from the iOS SDK Development book by Pragmatic Programmers (until about page 415) and I'll keep updating this as I go through the book.
+This pretty much replicates everything from the iOS SDK Development book by Pragmatic Programmers (until about page 481) and I'll keep updating this as I go through the book.
 
