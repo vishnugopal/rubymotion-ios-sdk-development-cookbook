@@ -7,6 +7,22 @@ class RecipesListController < UITableViewController
     @recipesEdit.action = "sendEmail:"
   end
 
+  def viewWillAppear(animated)
+    super
+
+    NSNotificationCenter.defaultCenter.addObserver(self, selector:"recipesChanged:", name: CookbookDocument::CHANGED, object: self.dataSource)
+  end
+
+  def viewWillDisappear(animated)
+    super
+    
+    NSNotificationCenter.defaultCenter.removeObserver(self, name: CookbookDocument::CHANGED, object: self.dataSource)
+  end
+
+  def recipesChanged(notification)
+    NSLog("in recipesChanged:")
+  end
+
   def sendEmail(sender)
     mailViewController = MFMailComposeViewController.alloc.init
     mailViewController.delegate = self
